@@ -54,13 +54,14 @@ class Generator:
             if root == self.cwd:
                 continue
             for file in files:
-                if not file.endswith('.md5'):
+                if file.endswith('.zip'):
                     try:
                         self.unzip(root, file)
                     except:
                         # missing or poorly formatted addon.xml
                         print('Excluding %s' % root)
                         print_exc()
+                if not file.endswith('.md5'):
                     self._generate_md5_file(root, file)
         # closing tag
         with open(self.addons_xml, 'ab') as f:
