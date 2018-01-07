@@ -54,7 +54,7 @@ class Generator:
             if root == self.cwd:
                 continue
             for file in files:
-                if file.endswith('.zip'):
+                if not file.endswith('.md5'):
                     try:
                         self.unzip(root, file)
                     except:
