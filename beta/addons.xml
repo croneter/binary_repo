@@ -2380,6 +2380,42 @@ version 1.7.0
 - Code optimization</news>
   </extension>
 </addon>
+<addon id="plugin.video.plexkodiconnect.movies" name="PlexKodiConnect Helper Movies" version="2.0.0" provider-name="croneter">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides></provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">PKC Dependency Add-On</summary>
+        <description lang="en">PlexKodiConnect add-on for movies</description>
+        <platform>all</platform>
+        <language>en</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <forum></forum>
+        <website>https://github.com/croneter/PlexKodiConnect</website>
+        <source></source>
+    </extension>
+</addon>
+<addon id="plugin.video.plexkodiconnect.tvshows" name="PlexKodiConnect Helper TV Shows" version="2.0.0" provider-name="croneter">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides></provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en">PKC Dependency Add-On</summary>
+        <description lang="en">PlexKodiConnect add-on for tv shows</description>
+        <platform>all</platform>
+        <language>en</language>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <forum></forum>
+        <website>https://github.com/croneter/PlexKodiConnect</website>
+        <source></source>
+    </extension>
+</addon>
 <addon id="repository.plexkodiconnectbeta" name="PlexKodiConnect Addons BETA" version="1.0.0" provider-name="croneter">
 	<requires>
 		<import addon="xbmc.addon" version="12.0.0"/>
