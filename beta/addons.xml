@@ -7336,6 +7336,326 @@ Finally a new update for the stable version. You will need to reconnect to your 
 - And tons of other stuff...</news>
   </extension>
 </addon>
+<addon  id="plugin.video.plexkodiconnect" name="PlexKodiConnect" version="2.4.7" provider-name="croneter">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.requests" version="2.9.1" />
+    <import addon="script.module.defusedxml" version="0.5.0"/>
+    <import addon="plugin.video.plexkodiconnect.movies" version="2.0.5" />
+    <import addon="plugin.video.plexkodiconnect.tvshows" version="2.0.5" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video audio image</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login">
+  </extension>
+  <extension point="kodi.context.item" library="contextmenu.py">
+      <item>
+        <label>30401</label>
+              <description>30416</description>
+              <visible>[!IsEmpty(ListItem.DBID) + !StringCompare(ListItem.DBID,-1) | !IsEmpty(ListItem.Property(plexid))]</visible>
+      </item>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Native Integration of Plex into Kodi</summary>
+    <description lang="en">Connect Kodi to your Plex Media Server. This plugin assumes that you manage all your videos with Plex (and none with Kodi). You might lose data already stored in the Kodi video and music databases (as this plugin directly changes them). Use at your own risk!</description>
+    <disclaimer lang="en">Use at your own risk</disclaimer>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>https://forums.plex.tv</forum>
+    <website>https://github.com/croneter/PlexKodiConnect</website>
+    <email></email>
+    <source>https://github.com/croneter/PlexKodiConnect</source>
+    <summary lang="nl_NL">Directe integratie van Plex in Kodi</summary>
+    <description lang="nl_NL">Verbind Kodi met je Plex Media Server. Deze plugin gaat ervan uit dat je al je video's met Plex (en niet met Kodi) beheerd. Je kunt gegevens reeds opgeslagen in de databases voor video en muziek van Kodi (deze plugin wijzigt deze gegevens direct) verliezen. Gebruik op eigen risico!</description>
+    <disclaimer lang="nl_NL">Gebruik op eigen risico</disclaimer>
+    <summary lang="fr_CA">Intégration native de Plex dans Kodi</summary>
+    <description lang="fr_CA">Connecter Kodi à votre Plex Media Server. Ce plugin assume que vous souhaitez gérer toutes vos vidéos avec Plex (et aucune avec Kodi). Vous pourriez perdre les données déjà stockées dans les bases de données vidéo et musique de Kodi (ce plugin les modifie directement). Utilisez à vos propres risques !</description>
+    <disclaimer lang="fr_CA">A utiliser à vos propres risques</disclaimer>
+    <summary lang="fr_FR">Intégration native de Plex dans Kodi</summary>
+    <description lang="fr_FR">Connecter Kodi à votre Plex Media Server. Ce plugin assume que vous souhaitez gérer toutes vos vidéos avec Plex (et aucune avec Kodi). Vous pourriez perdre les données déjà stockées dans les bases de données vidéo et musique de Kodi (ce plugin les modifie directement). Utilisez à vos propres risques !</description>
+    <disclaimer lang="fr_FR">A utiliser à vos propres risques</disclaimer>
+    <summary lang="de_DE">Komplette Integration von Plex in Kodi</summary>
+    <description lang="de_DE">Verbindet Kodi mit deinem Plex Media Server. Dieses Addon geht davon aus, dass du all deine Videos mit Plex verwaltest (und keine direkt mit Kodi). Du wirst möglicherweise Daten verlieren, die bereits in der Kodi Video- und/oder Musik-Datenbank gespeichert sind (da dieses Addon beide Datenbanken direkt verändert). Benutzung auf eigene Gefahr!</description>
+    <disclaimer lang="de_DE">Benutzung auf eigene Gefahr</disclaimer>
+    <summary lang="pt_PT">Integração nativa do Plex no Kodi</summary>
+    <description lang="pt_PT">Conectar o Kodi ao Servidor Plex Media. Este plugin assume que gerirá todos os vídeos com o Plex (e nenhum com Kodi). Poderá perder dados guardados nas bases de dados de vídeo e musica do Kodi (pois este plugin interfere diretamente com as mesmas). Use por risco de conta própria</description>
+    <disclaimer lang="pt_PT">Use por risco de conta própria</disclaimer>
+    <summary lang="pt_BR">Integração nativa do Plex no Kodi</summary>
+    <description lang="pt_BR">Conectar o Kodi ao Servidor Plex Media. Este plugin assume que gerirá todos os vídeos com o Plex (e nenhum com Kodi). Poderá perder dados guardados nas bases de dados de vídeo e musica do Kodi (pois este plugin interfere diretamente com as mesmas). Use por risco de conta própria</description>
+    <disclaimer lang="pt_BR">Use por risco de conta própria</disclaimer>
+    <summary lang="es_ES">Integración Nativa de Plex en Kodi</summary>
+    <description lang="es_ES">Conecte Kodi a su Plex Media Server.  Este plugin asume que usted gestiona todos sus vídeos con Plex (y ninguno con Kodi). Puede perder datos ya guardados en las bases de datos de vídeo y música de Kodi (ya que este plugin las actualiza directamente). ¡Úselo a su propio riesgo!</description>
+    <disclaimer lang="es_ES">Usar a su propio riesgo</disclaimer>
+    <summary lang="es_AR">Integración Nativa de Plex en Kodi</summary>
+    <description lang="es_AR">Conecte Kodi a su Plex Media Server.  Este plugin asume que usted gestiona todos sus vídeos con Plex (y ninguno con Kodi). Puede perder datos ya guardados en las bases de datos de vídeo y música de Kodi (ya que este plugin las actualiza directamente). ¡Úselo a su propio riesgo!</description>
+    <disclaimer lang="es_AR">Usar a su propio riesgo</disclaimer>
+    <summary lang="es_MX">Integración Nativa de Plex en Kodi</summary>
+    <description lang="es_MX">Conecte Kodi a su Plex Media Server.  Este plugin asume que usted gestiona todos sus vídeos con Plex (y ninguno con Kodi). Puede perder datos ya guardados en las bases de datos de vídeo y música de Kodi (ya que este plugin las actualiza directamente). ¡Úselo a su propio riesgo!</description>
+    <disclaimer lang="es_MX">Usar a su propio riesgo</disclaimer>
+    <summary lang="cs_CZ">Úplná integrace Plexu do Kodi</summary>
+    <description lang="cs_CZ">Připojte Kodi ke svému Plex Media Serveru. Tento doplněk předpokládá, že spravujete veškerá svá videa pomocí Plexu (nikoliv pomocí Kodi). Můžete přijít o data uložená ve video a hudební databázi Kodi (tento doplněk je přímo mění). Používejte na vlastní nebezpečí!</description>
+    <disclaimer lang="cs_CZ">Používejte na vlastní nebezpečí</disclaimer>
+    <summary lang="da_DK">Indbygget Integration af Plex i Kodi</summary>
+    <description lang="da_DK">Tilslut Kodi til din Plex Media Server. Dette plugin forudsætter, at du administrere alle dine videoer med Plex (og ikke med Kodi). Du kan miste data som allerede er gemt i Kodi video og musik-databaser (dette plugin ændrer direkte i dem). Brug på eget ansvar!</description>
+    <disclaimer lang="da_DK">Brug på eget ansvar</disclaimer>
+    <summary lang="no_NO">Naturlig integrasjon av Plex til Kodi</summary>
+    <description lang="no_NO">Koble Kodi til din Plex Media Server. Denne plugin forventer at du organiserer alle dine videor med Plex (og ingen med Kodi). Du kan miste all data allerede lagret i Kodi video- og musikkdatabasene (da denne plugin umiddelbart forandrer dem). Bruk på egen risiko!</description>
+    <disclaimer lang="no_NO">Bruk på eget ansvar</disclaimer>
+    <summary lang="hu_HU">a Plex natív integrációja a Kodi-ba</summary>
+    <description lang="hu_HU">Csatlakoztassa a Kodi-t a Plex médiaszerveréhez. Ez a kiegészítő feltételezi, hogy az összes videóját a Plex-szel kezeli (és egyiket sem a Kodi-val). Elveszítheti a már a Kodi videó- és zene-adatbázisában tárolt adatokat (mivel ez a kiegészítő közvetlenül módosítja az adatbázisokat). Csak saját felelősségére használja!</description>
+    <disclaimer lang="hu_HU">Csak saját felelősségre használja</disclaimer>
+    <summary lang="ru_RU">Нативная интеграция сервера Plex в Kodi</summary>
+    <description lang="ru_RU">Подключите Kodi к своему серверу Plex. Плагин предполагает что вы управляете своими видео с помощью Plex (а не в Kodi). Вы можете потерять текущие базы данных музыки и видео в Kodi (так как плагин напрямую их изменяет). Используйте на свой страх и риск</description>
+    <disclaimer lang="ru_RU">Используйте на свой страх и риск</disclaimer>
+    <summary lang="uk_UA">Нативна інтеграція Plex в Kodi</summary>
+    <description lang="uk_UA">Підключає Kodi до серверу Plex. Цей плагін передбачає, що ви керуєте всіма своїми відео за допомогою Plex (і ніяк не Kodi). Ви можете втратити дані, які вже зберігаються у відео та музичних БД Kodi (оскільки цей плагін безпосередньо їх змінює). Використовуйте на свій страх і ризик!</description>
+    <disclaimer lang="uk_UA">Використовуйте на свій ризик</disclaimer>
+    <news>version 2.4.7 (beta only):
+- Try to fix PKC for Enigma 2
+- Fix Kodi 18 wanting to scan tags for songs all the time (you will need to reset the database in the PKC settings)
+- Optimize resetting of Kodi and Plex databases
+
+version 2.4.6 (beta only):
+- Fix PKC not starting up on Enigma
+- Fix sync issues if video lies in root of file system
+- Make sure we retain a dummy first music artist entry
+- Increase logging
+
+version 2.4.5 (beta only):
+- Fix playback not starting up at all
+- Rewire Kodi library refreshs
+- Wipe Kodi database on first PKC run to more reliably install PKC
+
+version 2.4.4 (beta only):
+- Fix rare case when playback would not start-up
+- Increase logging
+
+version 2.4.3:
+- Fix Kodi addons throwing jsonrpc errors (database reset needed)
+
+version 2.4.2:
+- Make version 2.4.1 available for everyone
+
+version 2.4.1 (beta only):
+- Hopefully fix endless playlist sync loops
+- Ensure shows are deleted before seasons before episodes
+- Fix library sync crash on deleting episode with missing season
+- Fix numbering of already existing playlist files
+- Optimize logging
+
+version 2.4.0:
+- Use pretty Plex dialogs for everyone!
+
+version 2.3.14 (beta only):
+- Fix AttributeError on forcing texture caching
+- Switch to Plex style dialogs
+- Include PKC info in plex.tv dialogs
+- Include PKC info in user selection dialog
+
+version 2.3.13 (beta only):
+- Pretty Plex dialogs for plex.tv sign-in and user selection
+- Fix UnicodeDecodeError for PMS with non ASCII chars on local LAN discovery
+- Fix add-on settings not opening on installation
+- Greatly speed up deleting of items on the Kodi side
+- Safely parse XMLs using defusedxml
+- Fix PKC trying to sync audio playlists even when audio sync disabled
+- Some code cleanup
+
+version 2.3.12:
+- Fix Kodi hanging if media stream selection is aborted
+- Fix potential sync crash
+- Revert "Fix Kodi crash by committing to DB frequently"
+
+version 2.3.11 (beta only):
+- Fix Kodi crash by committing to DB frequently
+
+version 2.3.10:
+- Compatibility with Kodi 18 Leia Beta 1
+- Update translations
+- Make version 2.3.9 available for everyone
+
+version 2.3.9 (beta only):
+- Fix playback not resuming (Kodi 18 ignores listitem "StartOffset")
+- Fix playerid not being retrieved for Kodi 18
+- Prefer local trailers; new setting to list extras instead of playing trailer
+
+version 2.3.8:
+- Fix typo
+- Make version 2.3.4-2.3.7 available for everyone
+
+version 2.3.7 (beta only):
+- Fix library sync crash due to exotic playlist characters
+- Force-deactivate playlist sync for Microsoft UWP for Kodi 18
+
+version 2.3.6 (beta only):
+- Fix PKC not starting by decoupling watchdog/subprocess modules
+
+version 2.3.5 (beta only):
+- Fix PKC not starting by importing playlist module only when sync enabled
+
+version 2.3.4 (beta only):
+- Fix playback sometimes not starting and UnicodeEncodeError for logging
+
+version 2.3.3:
+- Choose trailer if several are present (DB reset required)
+
+version 2.3.2:
+- Fix casting to PKC failing
+
+version 2.3.1:
+- Fix library sync crashing due to Plex photo albums
+
+version 2.3.0:
+Major stable version bump. Highlights:
+- Sync Plex playlists to Kodi and Kodi playlists to Plex!
+- Support for Plex collection/set artwork
+- Many bug fixes, especially Plex Companion
+- Tons of code improvements in the hope that someone else will help with developing PKC
+Warning: the 2 helper add-ons for movies and tv shows also received an upgrade from 2.0.4 to 2.0.5. If you want to downgrade PKC, be sure to downgrade these add-ons as well!
+
+version 2.2.18 (beta only):
+- Fix PKC tv show node "all"
+- Move PKC playlist shortcut
+
+version 2.2.17 (beta only):
+- Access Plex Hubs. Listing will be different depending on Kodi section!
+- Fix year for songs missing
+- Fix Plex extras not playing
+- Fix rare library sync crash
+
+version 2.2.16 (beta only):
+- Enable Kodi libraries for Plex Music libraries
+- New Playlists menu item for video libraries
+- Only show Plex libraries in the applicable Kodi media category
+- Optimize code
+
+version 2.2.15 (beta only):
+- Fix ImportError on first PKC run
+
+version 2.2.14 (beta only):
+- Hopefully fix playlist sync loops
+
+version 2.2.13 (beta only):
+- Fix library sync crash
+- Fix switching to __future__ module
+- Fix "Prefer Kodi Artwork" toggle doing the exact opposite
+- Fix "Prefer Kodi artwork" setting not being visible
+
+version 2.2.12 (beta only):
+- Fix slow sync. Fix endless sync of corrupted PMS elements
+- Refactor playlist code
+- Fix FutureWarning
+
+version 2.2.11 (beta only):
+- Fix OnDeck widget for Direct Paths
+- Fix Plex Companion crashing when connected to Plex Web
+- Fix Plex Companion crash when connected to Plex Web playing playlist music
+- Improve Plex playback report when playing music playlist
+- Improve reliability in Kodi song playback
+- Catch some errors if user mixes audio and video in Kodi playqueue 
+
+version 2.2.10 (beta only):
+- Fix playlists getting recreated and deleted in an endless loop
+- Add some safety nets for playlist sync
+- Fix FutureWarning
+- Fix playlist sync settings not disappearing
+- Optimize code
+
+version 2.2.9 (beta only):
+- Hopefully fix Kodi and Plex playlists getting out of sync
+- Fix and optimize startup of playlist sync
+- Hide certain playlist settings under certain conditions
+- Fix errors in Kodi log
+
+version 2.2.8 (beta only):
+- Support for Plex collection artwork (PKC settings toggle under Artwork)
+- Fix hard PKC reset not working (OSError: no such file)
+- Deduplication
+- Catch exception
+- Update translations
+- Extend Kodi metadata
+- Update readme
+
+version 2.2.7 (beta only):
+- Allow to only sync specific Plex or Kodi playlists
+- Don't show artwork sync progress, reduce setting-writes
+- Fix playback sometimes not starting up
+- Use __future__ for contextmenu.py
+- Fix imports
+
+version 2.2.6 (beta only):
+- Fix default settings string, only show in English, hopefully fixes PKC loosing its settings
+
+version 2.2.5 (beta only):
+- Fix AttributeError and add_update has crashed
+
+version 2.2.4 (beta only):
+- Fix LibrarySync crashing due to Plex Companion messages
+
+version 2.2.3 (beta only):
+- Compatibility with Kodi Krypton Alpha 2
+- Append tv show and SxxExx to episode playlist entries
+
+version 2.2.2 (beta only):
+- Fixes to locking mechanisms which resulted in weird behavior in some cases
+- Switch to Python __future__ unicode_literals and absolute paths
+- Fix UnboundLocalError for playlists
+- Check all Kodi database versions before starting PKC
+- Fix KeyError on non-PKC playback startup
+- Speed up subtitle download to Kodi
+- Update translations
+- PEP-8 stuff
+
+version 2.2.1 (beta only):
+- Fix library sync crash due to PMS sending string, not unicode
+- Fix playback from playlists for add-on paths
+- Detect playback from a Kodi playlist for add-on paths - because we need some hacks due to Kodi bugs
+- Fix add-on paths playstate and Plex Companion for playlists
+- Fix Kodi telling Plex companion false playqueue position
+- Don't try to get a Kodi library items for Plex clips
+- Update translations
+
+version 2.2.0 (beta only):
+- Support for syncing Plex playlists to Kodi and vice-versa! (Kodi mixed music and video playlists cannot be supported as Plex does not support them)
+
+version 2.1.6:
+- Fix slow sync. Fix endless sync of corrupted PMS elements
+
+version 2.1.5:
+- Fix OnDeck widget for Direct Paths
+
+version 2.1.4:
+- Fix PKC settings suddenly getting lost
+- Don't show artwork sync progress, reduce setting-writes
+
+version 2.1.3:
+- Fix default settings string, only show in English, hopefully fixes PKC loosing its settings
+
+version 2.1.2:
+- Compatibility with Kodi Krypton Alpha 2
+- Check all Kodi database versions before starting PKC
+- Fix KeyError on non-PKC playback startup
+- PEP-8 stuff
+
+version 2.1.1:
+- Fix Library Sync crash on Android
+
+version 2.1.0:
+Finally a new update for the stable version. You will need to reconnect to your PMS and reset the Kodi database once. Highlights of v2 include:
+- Support for Plex extras
+- Huge improvements to Plex Companion
+- Fixes to Alexa voice control
+- Kodi 18 Leia Alpha 1 support
+- Improvements to playback start-up
+- Improvements to the syncing mechanism, which should get rid of a ton of small bugs
+- Fixes to widgets and resuming playback
+- Use of plex.direct paths instead of local IP addresses to ensure the SSL certificates shown by the PMS are deemed valid
+- Fix Kodi screensaver
+- Faster PKC startup
+- And tons of other stuff...</news>
+  </extension>
+</addon>
 <addon id="plugin.video.plexkodiconnect.movies" name="PlexKodiConnect Helper Movies" version="2.0.0" provider-name="croneter">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
