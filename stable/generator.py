@@ -21,11 +21,10 @@
 from __future__ import print_function
 from os import walk, makedirs
 from os.path import exists, join, dirname, abspath
-from shutil import rmtree, copyfile
+from shutil import rmtree
 import hashlib
 from traceback import print_exc
 from zipfile import ZipFile
-import xml.etree.ElementTree as etree
 
 OMIT_LINE = '<?xml'.encode('utf-8')
 
@@ -54,6 +53,7 @@ class Generator:
             if root == self.cwd:
                 continue
             for file in files:
+                print('Processing file: %s' % file)
                 if file.endswith('.zip'):
                     try:
                         self.unzip(root, file)
@@ -61,7 +61,9 @@ class Generator:
                         # missing or poorly formatted addon.xml
                         print('Excluding %s' % root)
                         print_exc()
-                if not file.endswith('.md5'):
+                if (not file.endswith('.md5') and
+                        not exists(join(root, '%s.md5' % file))):
+                    print('Calculating md5 for %s' % file)
                     self._generate_md5_file(root, file)
         # closing tag
         with open(self.addons_xml, 'ab') as f:
