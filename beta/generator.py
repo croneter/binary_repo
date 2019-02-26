@@ -53,6 +53,7 @@ class Generator:
             if root == self.cwd:
                 continue
             for file in files:
+                print('Processing file: %s' % file)
                 if file.endswith('.zip'):
                     try:
                         self.unzip(root, file)
