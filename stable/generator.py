@@ -52,6 +52,9 @@ class Generator:
         for root, dirs, files in walk(self.cwd):
             if root == self.cwd:
                 continue
+            # Ensure identical walk() on different Windows and Linux
+            dirs.sort()
+            files.sort()
             for file in files:
                 print('Processing file: %s' % file)
                 if file.endswith('.zip'):
